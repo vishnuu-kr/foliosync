@@ -39,7 +39,7 @@ export function Testimonials() {
             >
               <div className="ios-card p-10 flex flex-col h-full bg-[#121212]">
                 <p className="text-[#A1A1AA] text-[17px] leading-relaxed mb-10 flex-grow font-medium">
-                  "{testimonial.content}"
+                  &quot;{testimonial.content}&quot;
                 </p>
 
                 <div className="mt-auto border-t border-white/[0.06] pt-6 flex justify-between items-center">

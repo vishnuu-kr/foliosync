@@ -3,11 +3,11 @@
 import { useEffect, useState, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { motion } from "framer-motion";
-import { 
-  Github, BookOpen, Pen, Twitter, Linkedin, 
+import {
+  Github, BookOpen, Pen, Twitter, Linkedin,
   Settings, User, RefreshCw, LayoutDashboard,
   ExternalLink, LogOut, Component, Share2,
-  LucideIcon
+  LucideIcon, Search, Zap
 } from "lucide-react";
 import Link from "next/link";
 
