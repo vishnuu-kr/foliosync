@@ -70,6 +70,7 @@ export default async function PortfolioPage({ params }: { params: Promise<{ user
         <section className="mb-24 flex flex-col md:flex-row items-center md:items-start gap-10 md:gap-14">
           <div className="relative shrink-0">
             <div className="w-32 h-32 md:w-40 md:h-40 rounded-[40px] bg-[#121212] border border-white/[0.08] overflow-hidden shadow-ios">
+               {/* eslint-disable-next-line @next/next/no-img-element */}
                <img
                 src={user.image || linkedinProfile?.profilePicture || ""}
                 alt={user.name}
@@ -339,6 +340,7 @@ export default async function PortfolioPage({ params }: { params: Promise<{ user
                     <div className="ios-card p-8 bg-[#121212]">
                        <div className="flex items-center gap-4 mb-6">
                           <div className="w-12 h-12 rounded-full border border-white/[0.08] overflow-hidden grayscale">
+                             {/* eslint-disable-next-line @next/next/no-img-element */}
                              <img src={user.image || ""} alt="" className="w-full h-full object-cover" />
                           </div>
                           <div>

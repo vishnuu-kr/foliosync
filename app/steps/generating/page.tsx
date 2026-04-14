@@ -82,7 +82,7 @@ function GeneratingContent() {
     };
 
     runGeneration();
-  }, [github, devto, medium, twitter, linkedin, router]);
+  }, [github, devto, medium, twitter, linkedin, router, steps.length]);
 
   if (error) {
     return (

@@ -1,12 +1,7 @@
 {
   "/_not-found/page": "app/_not-found/page.js",
-  "/api/generate/route": "app/api/generate/route.js",
-  "/api/test-scrapers/route": "app/api/test-scrapers/route.js",
-  "/api/user/route": "app/api/user/route.js",
-  "/dashboard/page": "app/dashboard/page.js",
-  "/[username]/page": "app/[username]/page.js",
-  "/test-generate/page": "app/test-generate/page.js",
   "/steps/connect/page": "app/steps/connect/page.js",
+  "/[username]/page": "app/[username]/page.js",
   "/steps/generating/page": "app/steps/generating/page.js",
   "/(marketing)/page": "app/(marketing)/page.js"
 }
