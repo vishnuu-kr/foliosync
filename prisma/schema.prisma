@@ -1,0 +1,123 @@
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id            String   @id @default(cuid())
+  name          String
+  username      String   @unique
+  image         String?
+  bio           String?
+  headline      String?
+  tagline       String?
+  theme         String   @default("minimal")
+
+  // Connected handles
+  githubUsername   String?
+  devtoUsername    String?
+  mediumUsername   String?
+  twitterUsername  String?
+  linkedinUsername String?
+
+  // Relations
+  projects      Project[]
+  skills        Skill[]
+  blogPosts     BlogPost[]
+  experiences   Experience[]
+  socialLinks   SocialLink[]
+  
+  // New Production Blobs
+  scrapedData   ScrapedData?
+  portfolioData Portfolio?
+
+  lastSyncedAt  DateTime?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}
+
+model ScrapedData {
+  id          String   @id @default(cuid())
+  userId      String   @unique
+  data        String // SQLite doesn't support Json, using String for now
+  updatedAt   DateTime @updatedAt
+  user        User     @relation(fields: [userId], references: [id])
+}
+
+model Portfolio {
+  id          String   @id @default(cuid())
+  userId      String   @unique
+  data        String // SQLite doesn't support Json, using String for now
+  updatedAt   DateTime @updatedAt
+  user        User     @relation(fields: [userId], references: [id])
+}
+
+model Project {
+  id          String   @id @default(cuid())
+  userId      String
+  source      String   @default("github")
+  sourceId    String
+  title       String
+  description String?
+  url         String?
+  stars       Int?
+  language    String?
+  tags        String?
+  featured    Boolean  @default(false)
+
+  user User @relation(fields: [userId], references: [id])
+  @@unique([userId, sourceId])
+}
+
+model Skill {
+  id       String  @id @default(cuid())
+  userId   String
+  name     String
+  level    Int?
+  evidence String?
+
+  user User @relation(fields: [userId], references: [id])
+}
+
+model BlogPost {
+  id          String    @id @default(cuid())
+  userId      String
+  source      String
+  title       String
+  url         String
+  summary     String?
+  coverImage  String?
+  publishedAt DateTime?
+  tags        String?
+
+  user User @relation(fields: [userId], references: [id])
+}
+
+model Experience {
+  id          String    @id @default(cuid())
+  userId      String
+  source      String    @default("manual")
+  company     String
+  role        String
+  description String?
+  startDate   String?
+  endDate     String?
+  current     Boolean   @default(false)
+  logo        String?
+
+  user User @relation(fields: [userId], references: [id])
+}
+
+model SocialLink {
+  id       String @id @default(cuid())
+  userId   String
+  platform String
+  url      String
+  label    String?
+
+  user User @relation(fields: [userId], references: [id])
+}

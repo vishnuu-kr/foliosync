@@ -1,0 +1,6 @@
+{
+  "/steps/connect/page": "app/steps/connect/page.js",
+  "/steps/generating/page": "app/steps/generating/page.js",
+  "/[username]/page": "app/[username]/page.js",
+  "/(marketing)/page": "app/(marketing)/page.js"
+}
