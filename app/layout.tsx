@@ -6,7 +6,7 @@ const inter = Inter({ subsets: ['latin'], variable: '--font-sans', weight: ['400
 const jetbrainsMono = JetBrains_Mono({ subsets: ['latin'], variable: '--font-mono' })
 
 export const metadata: Metadata = {
-  title: 'FolioSync — AI Portfolio Generator',
+  title: 'FolioSync - AI Portfolio Generator',
   description: 'Generate a stunning developer portfolio in seconds. AI scrapes your GitHub, LinkedIn, Twitter & blogs to build your professional identity.',
   keywords: ['portfolio', 'developer', 'AI', 'GitHub', 'LinkedIn', 'resume'],
 }

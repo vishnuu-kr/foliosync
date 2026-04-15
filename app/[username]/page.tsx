@@ -66,7 +66,7 @@ export default async function PortfolioPage({ params }: { params: Promise<{ user
       </nav>
 
       <main className="relative z-10 max-w-5xl mx-auto px-6 pb-32 pt-10">
-        {/* ——— Profile Header ——— */}
+        {/* --- Profile Header --- */}
         <section className="mb-24 flex flex-col md:flex-row items-center md:items-start gap-10 md:gap-14">
           <div className="relative shrink-0">
             <div className="w-32 h-32 md:w-40 md:h-40 rounded-[40px] bg-[#121212] border border-white/[0.08] overflow-hidden shadow-ios">
@@ -120,7 +120,7 @@ export default async function PortfolioPage({ params }: { params: Promise<{ user
            {/* Left Column: Projects & Experience */}
            <div className="lg:col-span-8 space-y-24">
               
-              {/* ——— Featured Projects ——— */}
+              {/* --- Featured Projects --- */}
               {featuredProjects.length > 0 && (
                 <section>
                   <div className="flex items-center gap-3 mb-10">
@@ -175,7 +175,7 @@ export default async function PortfolioPage({ params }: { params: Promise<{ user
                 </section>
               )}
 
-              {/* ——— Experience Section ——— */}
+              {/* --- Experience Section --- */}
               {user.experiences.length > 0 && (
                 <section>
                   <div className="flex items-center gap-3 mb-10">
@@ -197,7 +197,7 @@ export default async function PortfolioPage({ params }: { params: Promise<{ user
                           <div className="flex flex-col md:flex-row md:items-center justify-between gap-2 mb-2">
                             <h3 className="text-[19px] font-semibold text-white tracking-tight">{exp.role}</h3>
                             <div className="text-[12px] font-bold text-zinc-500 uppercase tracking-widest">
-                              {exp.startDate} {exp.endDate ? `— ${exp.endDate}` : "— Present"}
+                              {exp.startDate} {exp.endDate ? `- ${exp.endDate}` : "- Present"}
                             </div>
                           </div>
                           <div className="text-[#0A84FF] font-bold text-[14px] mb-4 uppercase tracking-widest">
@@ -213,7 +213,7 @@ export default async function PortfolioPage({ params }: { params: Promise<{ user
                 </section>
               )}
 
-              {/* ——— All Projects Grid ——— */}
+              {/* --- All Projects Grid --- */}
               {otherProjects.length > 0 && (
                 <section>
                   <div className="flex items-center gap-3 mb-10">
@@ -264,7 +264,7 @@ export default async function PortfolioPage({ params }: { params: Promise<{ user
            {/* Right Column: Skills, Writing, X Feed */}
            <div className="lg:col-span-4 space-y-24">
               
-              {/* ——— Skills Section ——— */}
+              {/* --- Skills Section --- */}
               <section>
                  <div className="flex items-center gap-3 mb-10">
                     <div className="w-8 h-8 rounded-lg bg-[#BF5AF2]/10 border border-[#BF5AF2]/20 flex items-center justify-center">
@@ -290,7 +290,7 @@ export default async function PortfolioPage({ params }: { params: Promise<{ user
                  </div>
               </section>
 
-              {/* ——— Latest Writing ——— */}
+              {/* --- Latest Writing --- */}
               {user.blogPosts.length > 0 && (
                 <section>
                   <div className="flex items-center gap-3 mb-10">
@@ -325,7 +325,7 @@ export default async function PortfolioPage({ params }: { params: Promise<{ user
                 </section>
               )}
 
-              {/* ——— Twitter X Feed ——— */}
+              {/* --- Twitter X Feed --- */}
               {scrapedData?.twitter?.profile && (
                  <section>
                     <div className="flex items-center gap-3 mb-10">
@@ -369,7 +369,7 @@ export default async function PortfolioPage({ params }: { params: Promise<{ user
            </div>
         </div>
 
-        {/* ——— Footer ——— */}
+        {/* --- Footer --- */}
         <footer className="pt-24 mt-24 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-10">
           <div className="flex items-center gap-3">
              <div className="w-7 h-7 rounded-md bg-[#18181B] border border-white/[0.08] flex items-center justify-center">

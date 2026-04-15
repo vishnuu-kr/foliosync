@@ -156,7 +156,7 @@ export default function ConnectPage() {
                 Connect your accounts.
              </h1>
              <p className="text-[17px] text-zinc-400 font-medium">
-                GitHub is required. Other handles are optional—our free recon system will automatically search the web to build your professional profile.
+                GitHub is required. Other handles are optional-our free recon system will automatically search the web to build your professional profile.
              </p>
           </div>
 

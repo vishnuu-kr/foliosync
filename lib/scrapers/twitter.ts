@@ -40,7 +40,7 @@ export interface TwitterData {
 // ─────────────────────────────────────────────
 // STRATEGY 1: Twitter API v2 (Free Tier)
 //   Gets profile info. Free tier only allows
-//   GET /2/users/me — no tweet reading.
+//   GET /2/users/me - no tweet reading.
 // ─────────────────────────────────────────────
 export async function scrapeTwitterAPI(
   accessToken: string

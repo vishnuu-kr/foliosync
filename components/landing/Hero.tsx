@@ -75,7 +75,7 @@ export function Hero() {
           </div>
         </motion.div>
 
-        {/* Hero Visual — Cinematic Browser Mockup */}
+        {/* Hero Visual - Cinematic Browser Mockup */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
@@ -133,7 +133,7 @@ export function Hero() {
                   </div>
                 </div>
 
-                {/* Right column — project cards */}
+                {/* Right column - project cards */}
                 <div className="flex-[1.2] flex flex-col gap-4">
                   {[1, 2, 3].map((card, i) => (
                     <motion.div

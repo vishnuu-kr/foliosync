@@ -72,7 +72,7 @@ export async function scrapeGitHub(
   // ensure we have the username for the rest of the endpoints
   const activeUser = profile.login;
 
-  // 2) All repos (paginated — up to 200)
+  // 2) All repos (paginated - up to 200)
   const allRepos: any[] = []
   for (let page = 1; page <= 4; page++) {
     // If not authenticated, we use the /users/{username}/repos endpoint
@@ -108,7 +108,7 @@ export async function scrapeGitHub(
     })
   )
 
-  // 4) Contribution count (via GraphQL — requires token always to work fully)
+  // 4) Contribution count (via GraphQL - requires token always to work fully)
   let totalContributions = 0
   let pinnedRepos: string[] = []
   
