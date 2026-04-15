@@ -254,6 +254,9 @@ export async function createPortfolioForUser(socials: SocialInputs) {
     }
 
     return dbUser;
+  }, {
+    maxWait: 5000, 
+    timeout: 20000, 
   });
 
   return user;
