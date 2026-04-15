@@ -5,15 +5,15 @@ import Link from "next/link";
 
 const footerLinks = {
   Product: [
-    { label: "Features", href: "#features" },
-    { label: "Templates", href: "#showcase" },
-    { label: "Pricing", href: "#pricing" },
+    { label: "Features", href: "/#features" },
+    { label: "Templates", href: "/#showcase" },
+    { label: "Pricing", href: "/#pricing" },
     { label: "Changelog", href: "/changelog" },
   ],
   Resources: [
     { label: "Documentation", href: "/docs" },
     { label: "Engineering Blog", href: "/blog" },
-    { label: "GitHub Repository", href: "/github" },
+    { label: "GitHub Repository", href: "https://github.com/vishnuu-kr/foliosync", external: true },
   ],
   Company: [
     { label: "About", href: "/about" },
@@ -45,15 +45,22 @@ export function Footer() {
             </p>
 
             <div className="flex gap-2">
-              {["X", "GitHub"].map((name, i) => (
-                <a
-                  key={i}
-                  href="#"
-                  className="px-4 py-2 rounded-full bg-[#121212] border border-white/[0.06] flex items-center justify-center text-[12px] font-medium tracking-wide text-zinc-400 hover:text-white hover:bg-[#18181B] transition-all"
-                >
-                  {name}
-                </a>
-              ))}
+              <a
+                href="https://x.com/kr_vishnuu"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-4 py-2 rounded-full bg-[#121212] border border-white/[0.06] flex items-center justify-center text-[12px] font-medium tracking-wide text-zinc-400 hover:text-white hover:bg-[#18181B] transition-all"
+              >
+                X
+              </a>
+              <a
+                href="https://github.com/vishnuu-kr/foliosync"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-4 py-2 rounded-full bg-[#121212] border border-white/[0.06] flex items-center justify-center text-[12px] font-medium tracking-wide text-zinc-400 hover:text-white hover:bg-[#18181B] transition-all"
+              >
+                GitHub
+              </a>
             </div>
           </div>
 
@@ -67,6 +74,9 @@ export function Footer() {
                   <li key={link.label}>
                     <Link
                       href={link.href}
+                      // @ts-ignore
+                      target={link.external ? "_blank" : undefined}
+                      rel={link.external ? "noopener noreferrer" : undefined}
                       className="text-[14px] text-zinc-500 hover:text-zinc-300 transition-colors"
                     >
                       {link.label}
