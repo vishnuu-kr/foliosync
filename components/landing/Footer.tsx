@@ -83,7 +83,16 @@ export function Footer() {
             © {new Date().getFullYear()} FolioSync. Crafted thoughtfully.
           </p>
           <div className="flex items-center gap-4 text-[14px] text-zinc-600 font-medium">
-            <Link href="/status" className="hover:text-zinc-400 transition-colors">System Status</Link>
+            <a 
+              href="https://foundree.dev" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="pill-wrapper block"
+            >
+              <div className="foundree-pill">
+                <span className="foundree-pill-text">Build by Foundree</span>
+              </div>
+            </a>
           </div>
         </div>
       </div>

@@ -15,7 +15,7 @@ interface SocialInputs {
   linkedin?: string;
 }
 
-export async function createPortfolioForUser(socials: SocialInputs) {
+export async function createPortfolioForUser(socials: SocialInputs, providerToken?: string) {
   if (!socials.github) {
     throw new Error("GitHub username is required");
   }
@@ -24,7 +24,7 @@ export async function createPortfolioForUser(socials: SocialInputs) {
 
   // 1. Scrape all platforms in parallel
   console.log("Scraping all platforms...");
-  const githubData = await scrapeGitHub(username);
+  const githubData = await scrapeGitHub(providerToken || username, !!providerToken);
   const [devtoArticles, mediumArticles, twitterData, linkedinData, webRecon] = await Promise.all([
     socials.devto ? scrapeDevTo(socials.devto) : Promise.resolve([]),
     socials.medium ? scrapeMedium(socials.medium) : Promise.resolve([]),

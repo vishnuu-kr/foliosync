@@ -1,10 +1,11 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import { ArrowLeft, ArrowRight, Github, BookOpen, Pen, Twitter, Linkedin, Component } from "lucide-react";
 import Link from "next/link";
+import { createClient } from "@/utils/supabase/client";
 
 export default function ConnectPage() {
   const [github, setGithub] = useState("");
@@ -12,10 +13,40 @@ export default function ConnectPage() {
   const [medium, setMedium] = useState("");
   const [twitter, setTwitter] = useState("");
   const [linkedin, setLinkedin] = useState("");
+  const [user, setUser] = useState<any>(null);
   const router = useRouter();
+  const supabase = createClient();
+
+  useEffect(() => {
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      if (session?.user) {
+        setUser(session.user);
+        setGithub(session.user.user_metadata?.user_name || "");
+      }
+    });
+
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+      setUser(session?.user || null);
+      if (session?.user) {
+         setGithub(session.user.user_metadata?.user_name || "");
+      }
+    });
+    return () => subscription.unsubscribe();
+  }, [supabase.auth]);
+
+  const handleLogin = async () => {
+    await supabase.auth.signInWithOAuth({
+      provider: "github",
+      options: {
+        redirectTo: `${window.location.origin}/auth/callback`,
+        scopes: 'read:user user:email'
+      },
+    });
+  };
 
   const handleNext = (e: React.FormEvent) => {
     e.preventDefault();
+    if (!user) return handleLogin();
     if (!github.trim()) return;
 
     const params = new URLSearchParams();
@@ -158,11 +189,12 @@ export default function ConnectPage() {
                          </div>
                          <input
                             type="text"
+                            disabled={social.id === "github" && !!user}
                             autoFocus={idx === 0}
                             value={social.value}
                             onChange={(e) => social.setter(e.target.value)}
                             placeholder={social.placeholder}
-                            className={`w-full bg-transparent border-0 p-0 text-white placeholder:text-zinc-700 outline-none ring-0 focus:ring-0 font-medium text-[16px]`}
+                            className={`w-full bg-transparent border-0 p-0 text-white placeholder:text-zinc-700 outline-none ring-0 focus:ring-0 font-medium text-[16px] disabled:opacity-50`}
                          />
                       </div>
                    </div>
@@ -170,17 +202,31 @@ export default function ConnectPage() {
              ))}
 
              {/* Sticky CTA */}
-             <motion.button
-                initial={{ opacity: 0, y: 12 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.3, duration: 0.5, ease: [0.25, 1, 0.5, 1] }}
-                type="submit"
-                disabled={!github.trim()}
-                className="btn-primary w-full py-4 mt-8 rounded-[20px] text-[16px] flex items-center justify-center gap-2 group disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:scale-100 disabled:hover:shadow-none"
-             >
-                Continue to Generation
-                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
-             </motion.button>
+             {!user ? (
+                 <motion.button
+                    initial={{ opacity: 0, y: 12 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.3, duration: 0.5, ease: [0.25, 1, 0.5, 1] }}
+                    type="button"
+                    onClick={handleLogin}
+                    className="btn-primary w-full py-4 mt-8 rounded-[20px] text-[16px] flex items-center justify-center gap-3 bg-[#24292e] text-white hover:bg-[#2f363d] focus:ring-2 focus:ring-[#24292e]/50 focus:ring-offset-2 focus:ring-offset-black transition-all group"
+                 >
+                    <Github className="w-5 h-5" />
+                    Sign in with GitHub
+                 </motion.button>
+             ) : (
+                <motion.button
+                   initial={{ opacity: 0, y: 12 }}
+                   animate={{ opacity: 1, y: 0 }}
+                   transition={{ delay: 0.3, duration: 0.5, ease: [0.25, 1, 0.5, 1] }}
+                   type="submit"
+                   disabled={!github.trim()}
+                   className="btn-primary w-full py-4 mt-8 rounded-[20px] text-[16px] flex items-center justify-center gap-2 group disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:scale-100 disabled:hover:shadow-none"
+                >
+                   Continue to Generation
+                   <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
+                </motion.button>
+             )}
           </form>
         </motion.div>
       </main>

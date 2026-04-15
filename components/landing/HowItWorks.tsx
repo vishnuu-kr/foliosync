@@ -55,21 +55,22 @@ export function HowItWorks() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
                 transition={{ duration: 0.5, delay: i * 0.1, ease: [0.25, 1, 0.5, 1] }}
-                className="ios-card p-10 flex flex-col relative"
+                className="ios-card p-10 flex flex-col relative overflow-hidden group hover:border-zinc-700/50 transition-colors"
               >
-                <div className={`w-14 h-14 rounded-2xl border border-white/[0.05] flex items-center justify-center mb-8 shadow-inner ${step.bg}`}>
-                  <step.icon className={`w-6 h-6 ${step.color}`} />
-                </div>
-
-                <div className="absolute top-10 right-10 text-[64px] font-bold text-white/[0.04] -z-10 select-none">
+                {/* Massive Fading Number from Top to Bottom */}
+                <div className="absolute -top-6 right-0 md:-right-4 text-[180px] font-extrabold leading-none pointer-events-none select-none bg-gradient-to-b from-white/[0.07] to-transparent bg-clip-text text-transparent transform transition-transform duration-700 group-hover:scale-105 group-hover:-rotate-2">
                   {step.step}
                 </div>
 
-                <div className="mt-auto">
+                <div className={`relative z-10 w-14 h-14 rounded-2xl border border-white/[0.05] flex items-center justify-center mb-8 shadow-inner ${step.bg}`}>
+                  <step.icon className={`w-6 h-6 ${step.color}`} />
+                </div>
+
+                <div className="mt-auto relative z-10">
                   <h3 className="text-[20px] font-semibold text-white mb-3 tracking-tight">
                     {step.title}
                   </h3>
-                  <p className="text-[16px] text-zinc-400 leading-relaxed font-medium">
+                  <p className="text-[15px] text-zinc-400 leading-relaxed font-medium">
                     {step.description}
                   </p>
                 </div>

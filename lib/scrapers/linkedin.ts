@@ -2,7 +2,6 @@ import axios from 'axios'
 import * as cheerio from 'cheerio'
 import fs from 'fs'
 import path from 'path'
-import { chromium } from 'playwright'
 import { searchProfessionalDetails } from './search'
 
 export interface LinkedInData {
@@ -232,6 +231,16 @@ export async function scrapeLinkedInPlaywright(
 ): Promise<LinkedInData | null> {
   let browser;
   try {
+    // Dynamically require playwright so it doesn't crash serverless builds if not run
+    let chromium;
+    try {
+      const playwright = require('playwright');
+      chromium = playwright.chromium;
+    } catch {
+      console.warn("Playwright not available. Skipping native headless scrape.");
+      return null;
+    }
+
     browser = await chromium.launch({ headless: true });
     
     // Check for the li_at session cookie (FREE! No Key required)
