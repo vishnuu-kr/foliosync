@@ -74,9 +74,8 @@ export function Footer() {
                   <li key={link.label}>
                     <Link
                       href={link.href}
-                      // @ts-ignore
-                      target={link.external ? "_blank" : undefined}
-                      rel={link.external ? "noopener noreferrer" : undefined}
+                      target={"external" in link && link.external ? "_blank" : undefined}
+                      rel={"external" in link && link.external ? "noopener noreferrer" : undefined}
                       className="text-[14px] text-zinc-500 hover:text-zinc-300 transition-colors"
                     >
                       {link.label}
